@@ -9,7 +9,7 @@ import com.pranay.apodnasa.model.APODPictureItem.Companion.TABLE_NAME
 data class APODPictureItem(
     @SerializedName("url")
     @PrimaryKey
-    var url: String? = null,
+    var url: String,
     @SerializedName("copyright")
     var copyright: String? = null,
     @SerializedName("date")
