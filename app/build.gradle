@@ -65,7 +65,6 @@ dependencies {
     //Hilt
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-compiler:2.42"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
 
     //Work manager
     implementation "androidx.work:work-runtime-ktx:2.7.1"
@@ -76,6 +75,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"
@@ -87,7 +87,7 @@ dependencies {
 
     //Room database
     def roomVersion="2.4.2"
-    implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
 }
