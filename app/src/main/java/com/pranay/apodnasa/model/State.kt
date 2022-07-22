@@ -1,6 +1,6 @@
 package com.pranay.apodnasa.model
 
-import dev.shreyaspatil.foodium.data.repository.Resource
+import com.pranay.apodnasa.data.repository.Resource
 
 /**
  * Manage state for UI & Data.
