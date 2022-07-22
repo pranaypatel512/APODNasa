@@ -3,7 +3,6 @@ package com.pranay.apodnasa.data.repository
 import com.pranay.apodnasa.data.local.dao.APODPictureDao
 import com.pranay.apodnasa.data.remote.api.ApiService
 import com.pranay.apodnasa.model.APODListResponse
-import dev.shreyaspatil.foodium.data.repository.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response

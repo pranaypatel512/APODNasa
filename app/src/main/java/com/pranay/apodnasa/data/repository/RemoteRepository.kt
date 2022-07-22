@@ -2,7 +2,6 @@ package com.pranay.apodnasa.data.repository
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
-import dev.shreyaspatil.foodium.data.repository.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import retrofit2.Response

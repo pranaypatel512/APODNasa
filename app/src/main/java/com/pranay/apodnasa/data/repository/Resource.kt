@@ -1,4 +1,4 @@
-package dev.shreyaspatil.foodium.data.repository
+package com.pranay.apodnasa.data.repository
 
 sealed class Resource<T> {
     class Success<T>(val data: T) : Resource<T>()
