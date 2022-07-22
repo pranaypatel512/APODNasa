@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.pranay.apodnasa.R
 import com.pranay.apodnasa.databinding.FragmentPictureDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+@AndroidEntryPoint
 class PictureDetailsFragment : Fragment() {
 
     private var _binding: FragmentPictureDetailsBinding? = null
@@ -23,7 +25,7 @@ class PictureDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPictureDetailsBinding.inflate(inflater, container, false)
         return binding.root
