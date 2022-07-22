@@ -6,23 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.PictureListingFragment">
 
-    <TextView
-        android:id="@+id/textview_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/dimen_progressbar_size"
+        android:layout_height="@dimen/dimen_progressbar_size"
         app:layout_constraintEnd_toEndOf="parent"
+        android:indeterminateTint="@color/purple_700"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLoadingMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:gravity="center"
+        android:text="@string/getting_pictures_for_you"
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="progressBar,tvLoadingMessage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

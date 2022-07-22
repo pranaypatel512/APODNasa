@@ -17,7 +17,6 @@
     <fragment
         android:id="@+id/PictureDetailsFragment"
         android:name="com.pranay.apodnasa.ui.PictureDetailsFragment"
-        android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_picture_details">
 
         <action

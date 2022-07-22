@@ -1,3 +1,4 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dimen_progressbar_size">52dp</dimen>
 </resources>
