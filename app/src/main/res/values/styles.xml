@@ -5,7 +5,7 @@
         <item name="android:textSize">@dimen/dimen_font_large</item>
         <item name="fontFamily">@font/nunito_bold</item>
         <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:padding">@dimen/dimen_padding_small</item>
+        <item name="android:padding">@dimen/dimen_padding_medium</item>
     </style>
 
     <style name="TextViewTitleDetails" parent="TextViewTitle">
