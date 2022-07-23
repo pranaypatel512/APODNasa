@@ -39,7 +39,7 @@ abstract class APODPicturesDatabase : RoomDatabase() {
                     context.applicationContext,
                     APODPicturesDatabase::class.java,
                     DB_NAME
-                ).build()
+                ).addMigrations(*DatabaseMigrations.MIGRATIONS).build()
 
                 INSTANCE = instance
                 return instance
