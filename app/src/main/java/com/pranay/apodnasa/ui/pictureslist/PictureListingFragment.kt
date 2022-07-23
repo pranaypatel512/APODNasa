@@ -1,20 +1,27 @@
-package com.pranay.apodnasa.ui
+package com.pranay.apodnasa.ui.pictureslist
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.work.*
+import com.pranay.apodnasa.R
 import com.pranay.apodnasa.databinding.FragmentPictureListingBinding
 import com.pranay.apodnasa.model.APODPictureItem
 import com.pranay.apodnasa.model.State
+import com.pranay.apodnasa.ui.PicturesViewModel
+import com.pranay.apodnasa.ui.pictureslist.adapter.NasaPicturesListAdapter
+import com.pranay.apodnasa.util.ItemOffsetDecoration
 import com.pranay.apodnasa.util.Logger
+import com.pranay.apodnasa.util.show
 import com.pranay.apodnasa.util.showToast
 import com.pranay.apodnasa.worker.RemotePictureWorker
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +37,7 @@ class PictureListingFragment : Fragment() {
     private val binding get() = _binding!!
     private val picturesViewModel: PicturesViewModel by viewModels()
 
+    private val pictureAdapter = NasaPicturesListAdapter(this::onItemClicked)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +49,21 @@ class PictureListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViews()
         observePosts()
+    }
+
+    private fun setUpViews() {
+        binding.picturesRecyclerView.apply {
+            adapter = pictureAdapter
+            addItemDecoration(
+                ItemOffsetDecoration(
+                    requireContext(), R.dimen.dimen_space_item
+                )
+            )
+            (layoutManager as StaggeredGridLayoutManager).gapStrategy =
+                StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+        }
     }
 
     private fun observePosts() {
@@ -71,6 +93,7 @@ class PictureListingFragment : Fragment() {
 
     private fun showData(data: List<APODPictureItem>) {
         Logger.log("AAAData--->", data.toString())
+        pictureAdapter.submitList(data)
     }
 
     private fun startWorkerFirstTime() {
@@ -95,7 +118,7 @@ class PictureListingFragment : Fragment() {
                             if (errorValue != null) // error case
                             {
                                 showToast(errorValue)
-                                //TOdo show error page if any issue with first time loading
+                                binding.tvNoPictures.show()
                             }
                         }
                         WorkInfo.State.SUCCEEDED -> {
@@ -115,6 +138,10 @@ class PictureListingFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.groupLoading.isVisible = isLoading
+    }
+
+    private fun onItemClicked(aPODPictureItem: APODPictureItem, imageView: ImageView) {
+
     }
 
     override fun onDestroyView() {
