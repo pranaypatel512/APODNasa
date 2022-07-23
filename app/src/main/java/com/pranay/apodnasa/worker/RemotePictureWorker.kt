@@ -49,7 +49,9 @@ class RemotePictureWorker @AssistedInject constructor(
                         ErrorResponse::class.java
                     ) ?: ErrorResponse()
                     var errorValue: String? = null
-                    if (errorBody.error != null) {
+                    if (!errorBody.message.isNullOrEmpty()) {
+                        errorValue = errorBody.message
+                    } else if (errorBody.error != null) {
                         errorBody.error?.let {
                             errorValue = it.message
                         }
