@@ -1,6 +1,7 @@
 package com.pranay.apodnasa.ui.pictureslist.viewholder
 
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -35,7 +36,10 @@ class NasaPicturesItemViewHolder(private val binding: ListItemNasaPhotoBinding) 
             } ?: kotlin.run {
                 textViewPhotoCopyright.hide()
             }
-            apodPictureItem.url.let {
+            ivVideoItemPlay.isVisible = apodPictureItem.isVideo()
+            val urlToLoad =
+                if (apodPictureItem.isVideo()) apodPictureItem.thumbnailUrl else apodPictureItem.url
+            urlToLoad?.let {
                 Glide.with(imageViewPlanet.context).load(it)
                     .apply(RequestOptions.noTransformation())
                     .placeholder(R.drawable.ic_launcher_background)

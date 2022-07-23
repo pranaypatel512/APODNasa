@@ -61,5 +61,18 @@
             app:layout_constraintStart_toEndOf="@id/textViewPhotoDate"
             app:layout_constraintTop_toTopOf="@id/textViewPhotoDate"
             tools:text="@string/app_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivVideoItemPlay"
+            android:layout_width="@dimen/dimen_play_image_size"
+            android:layout_height="@dimen/dimen_play_image_size"
+            android:src="@drawable/ic_outline_play_circle_outline_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewPlanet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_outline_play_circle_outline_24"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
