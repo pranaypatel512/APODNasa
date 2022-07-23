@@ -1,5 +1,6 @@
 package com.pranay.apodnasa.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -22,10 +23,17 @@ data class APODPictureItem(
     var mediaType: String? = null,
     @SerializedName("service_version")
     var serviceVersion: String? = null,
+    @SerializedName("thumbnail_url")
+    @ColumnInfo(name = "thumbnailUrl")
+    var thumbnailUrl: String? = null,
     @SerializedName("title")
     var title: String? = null
 ) {
     companion object {
         const val TABLE_NAME = "APODList"
+    }
+
+    fun isVideo(): Boolean {
+        return mediaType == MediaType.video.toString()
     }
 }

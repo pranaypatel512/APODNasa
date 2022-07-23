@@ -14,9 +14,12 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("apod")
-    suspend fun getAPODPictures(@Query("start_date") startDate: String,
-                         @Query("end_date") endDate: String,
-                         @Query("api_key") apiKey: String= BuildConfig.API_KEY):
+    suspend fun getAPODPictures(
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String,
+        @Query("thumbs") thumbs: Boolean = true,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
+    ):
             Response<APODListResponse>
 
     companion object {
