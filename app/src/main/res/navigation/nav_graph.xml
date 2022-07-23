@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/PictureListingFragment"
-        android:name="com.pranay.apodnasa.ui.PictureListingFragment"
+        android:name="com.pranay.apodnasa.ui.pictureslist.PictureListingFragment"
         tools:layout="@layout/fragment_picture_listing">
 
         <action

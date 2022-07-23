@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PictureListingFragment">
+    android:fitsSystemWindows="false"
+    tools:context=".ui.pictureslist.PictureListingFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="@dimen/dimen_progressbar_size"
         android:layout_height="@dimen/dimen_progressbar_size"
         app:layout_constraintEnd_toEndOf="parent"
-        android:indeterminateTint="@color/purple_700"
+        android:indeterminateTint="@color/textColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,6 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="0dp"
+        style="@style/TextViewTitle"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fab_margin"
         android:gravity="center"
@@ -32,4 +34,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="progressBar,tvLoadingMessage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/picturesRecyclerView"
+        style="@style/PicturesRecyclerStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:spanCount="2"
+        tools:itemCount="7"
+        tools:listitem="@layout/list_item_nasa_photo" />
+    <!-- No images placeholder-->
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoPictures"
+        style="@style/TextViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:drawableTop="@drawable/ic_baseline_image_search_24"
+        android:gravity="center"
+        android:text="@string/no_astronomy_pictures_found"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
