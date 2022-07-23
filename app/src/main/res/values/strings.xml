@@ -11,5 +11,7 @@
     <string name="notification_title_getting_images">Fetching daily images</string>
     <string name="getting_pictures_for_you">Getting pictures for you…</string>
 
-
+    <string name="planet_image">Planet image</string>
+    <string name="str_copyright">&#169; %1$s</string>
+    <string name="no_astronomy_pictures_found">No Astronomy Pictures found!</string>
 </resources>
