@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.work.*
 import com.pranay.apodnasa.R
@@ -35,7 +36,9 @@ class PictureListingFragment : Fragment() {
 
     private var _binding: FragmentPictureListingBinding? = null
     private val binding get() = _binding!!
-    private val picturesViewModel: PicturesViewModel by viewModels()
+    private val picturesViewModel: PicturesViewModel by navGraphViewModels(R.id.nav_graph) {
+        defaultViewModelProviderFactory
+    }
 
     private val pictureAdapter = NasaPicturesListAdapter(this::onItemClicked)
     override fun onCreateView(
@@ -50,7 +53,7 @@ class PictureListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
-        observePosts()
+        observePicturesPosts()
     }
 
     private fun setUpViews() {
@@ -66,7 +69,7 @@ class PictureListingFragment : Fragment() {
         }
     }
 
-    private fun observePosts() {
+    private fun observePicturesPosts() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 picturesViewModel.pictures.collect { state ->
@@ -141,7 +144,8 @@ class PictureListingFragment : Fragment() {
     }
 
     private fun onItemClicked(aPODPictureItem: APODPictureItem, imageView: ImageView) {
-
+        picturesViewModel.setSelection(aPODPictureItem)
+        findNavController().navigate(R.id.action_PictureListingFragment_to_PictureDetailsFragment)
     }
 
     override fun onDestroyView() {
