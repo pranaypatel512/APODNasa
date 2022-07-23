@@ -21,6 +21,12 @@ class PicturesViewModel @Inject constructor(private val localPictureRepository: 
 
     val pictures: StateFlow<State<List<APODPictureItem>>> = _picturesList
 
+
+    private val _selectedItem: MutableStateFlow<State<APODPictureItem>> =
+        MutableStateFlow(State.loading())
+
+    val selectedItem: StateFlow<State<APODPictureItem>> = _selectedItem
+
     init {
         getPictures()
     }
@@ -31,5 +37,12 @@ class PicturesViewModel @Inject constructor(private val localPictureRepository: 
                 .map { resource -> State.fromResource(resource) }
                 .collect { state -> _picturesList.value = state }
         }
+    }
+
+    /**
+     * Call once user click on any picture. setup item to show in details screen
+     */
+    fun setSelection(selectedPicture: APODPictureItem) {
+        _selectedItem.value = State.Success(selectedPicture)
     }
 }
