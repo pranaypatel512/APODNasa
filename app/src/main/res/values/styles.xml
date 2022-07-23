@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextViewTitle">
+        <item name="android:textSize">@dimen/dimen_font_large</item>
+        <item name="fontFamily">@font/nunito_bold</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:padding">@dimen/dimen_padding_small</item>
+    </style>
+
+    <style name="TextViewTitleDetails" parent="TextViewTitle">
+        <item name="android:textSize">@dimen/dimen_font_x_large</item>
+    </style>
+
+    <style name="TextViewSubTitle">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="fontFamily">@font/nunito_medium</item>
+        <item name="android:textSize">@dimen/dimen_font_medium</item>
+        <item name="android:paddingStart">@dimen/dimen_padding_medium</item>
+        <item name="android:paddingLeft">@dimen/dimen_padding_medium</item>
+    </style>
+
+    <style name="TextViewSubTitleDetails" parent="TextViewSubTitle">
+        <item name="android:textSize">@dimen/dimen_font_large</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.Card.Media" parent="">
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeTopLeft">@dimen/card_image_corner</item>
+        <item name="cornerSizeTopRight">@dimen/card_image_corner</item>
+    </style>
+
+    <style name="PicturesRecyclerStyle">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:paddingTop">@dimen/dimen_padding_small</item>
+    </style>
+</resources>
