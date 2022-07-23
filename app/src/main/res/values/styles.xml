@@ -2,7 +2,7 @@
 <resources>
 
     <style name="TextViewTitle">
-        <item name="android:textSize">@dimen/dimen_font_large</item>
+        <item name="android:textSize">@dimen/dimen_font_medium</item>
         <item name="fontFamily">@font/nunito_bold</item>
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:padding">@dimen/dimen_padding_medium</item>
@@ -15,13 +15,17 @@
     <style name="TextViewSubTitle">
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="fontFamily">@font/nunito_medium</item>
-        <item name="android:textSize">@dimen/dimen_font_medium</item>
+        <item name="android:textSize">@dimen/dimen_font_small</item>
         <item name="android:paddingStart">@dimen/dimen_padding_medium</item>
         <item name="android:paddingLeft">@dimen/dimen_padding_medium</item>
     </style>
 
     <style name="TextViewSubTitleDetails" parent="TextViewSubTitle">
         <item name="android:textSize">@dimen/dimen_font_large</item>
+    </style>
+
+    <style name="TextViewSubTitleInfo" parent="TextViewSubTitle">
+        <item name="android:textSize">@dimen/dimen_font_medium</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.Card.Media" parent="">

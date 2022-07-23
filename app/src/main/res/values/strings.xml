@@ -9,7 +9,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="notification_title_getting_images">Fetching daily images</string>
-    <string name="getting_pictures_for_you">Getting pictures for you…</string>
+    <string name="getting_pictures_for_you">Getting Astronomy Pictures of the Day for you…</string>
 
     <string name="planet_image">Planet image</string>
     <string name="str_copyright">&#169; %1$s</string>

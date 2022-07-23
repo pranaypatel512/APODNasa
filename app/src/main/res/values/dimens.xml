@@ -1,22 +1,23 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="dimen_progressbar_size">52dp</dimen>
-    <dimen name="card_elevation">6dp</dimen>
-    <dimen name="card_corner">2dp</dimen>
-    <dimen name="card_image_corner">4dp</dimen>
-    <dimen name="dimen_padding_medium">6dp</dimen>
-    <dimen name="dimen_padding_large">8dp</dimen>
-    <dimen name="dimen_padding_small">4dp</dimen>
-    <dimen name="dimen_padding_x_small">2dp</dimen>
-    <dimen name="dimen_font_large">14sp</dimen>
-    <dimen name="dimen_font_medium">12sp</dimen>
-    <dimen name="dimen_font_small">10sp</dimen>
-    <dimen name="dimen_space_item">4dp</dimen>
-    <dimen name="dimen_height_large">300dp</dimen>
-    <dimen name="dimen_margin_medium">10dp</dimen>
-    <dimen name="dimen_margin_large">14dp</dimen>
-    <dimen name="dimen_line_space">2dp</dimen>
-    <dimen name="dimen_button_size">50dp</dimen>
-    <dimen name="dimen_font_x_large">16sp</dimen>
+    <dimen name="fab_margin">@dimen/_16sdp</dimen>
+    <dimen name="dimen_progressbar_size">@dimen/_52sdp</dimen>
+    <dimen name="card_elevation">@dimen/_6sdp</dimen>
+    <dimen name="card_corner">@dimen/_2sdp</dimen>
+    <dimen name="card_image_corner">@dimen/_4sdp</dimen>
+    <dimen name="dimen_padding_medium">@dimen/_6sdp</dimen>
+    <dimen name="dimen_padding_large">@dimen/_8sdp</dimen>
+    <dimen name="dimen_padding_small">@dimen/_4sdp</dimen>
+    <dimen name="dimen_padding_x_small">@dimen/_2sdp</dimen>
+    <dimen name="dimen_font_large">@dimen/_14ssp</dimen>
+    <dimen name="dimen_font_medium">@dimen/_12ssp</dimen>
+    <dimen name="dimen_font_small">@dimen/_10ssp</dimen>
+    <dimen name="dimen_space_item">@dimen/_4sdp</dimen>
+    <dimen name="dimen_height_large">@dimen/_300sdp</dimen>
+    <dimen name="dimen_margin_medium">@dimen/_10sdp</dimen>
+    <dimen name="dimen_margin_large">@dimen/_14sdp</dimen>
+    <dimen name="dimen_line_space">@dimen/_2sdp</dimen>
+    <dimen name="dimen_button_size">@dimen/_50sdp</dimen>
+    <dimen name="dimen_font_x_large">@dimen/_16ssp</dimen>
+    <dimen name="dimen_loading_view_size_min">@dimen/_200sdp</dimen>
 
 </resources>
