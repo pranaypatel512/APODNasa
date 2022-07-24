@@ -127,20 +127,19 @@ class PictureListingFragment : Fragment() {
                             {
                                 showToast(errorValue)
                             }
-                            binding.tvNoPictures.show()
+                            binding.viewNoPictures.show()
                         }
                         WorkInfo.State.SUCCEEDED -> {
-                            binding.tvNoPictures.hide()
+                            binding.viewNoPictures.hide()
                             showLoading(false)
                             setUpPeriodicWorkRequest()
                         }
                         WorkInfo.State.RUNNING -> {
-                            binding.tvNoPictures.hide()
+                            binding.viewNoPictures.hide()
                             showLoading(true)
                         }
                         else -> {
-                            showLoading(false)
-                            binding.tvNoPictures.show()
+
                         }
                     }
                 }
