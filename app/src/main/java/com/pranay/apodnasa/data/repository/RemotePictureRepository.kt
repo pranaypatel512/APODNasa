@@ -1,18 +1,18 @@
 package com.pranay.apodnasa.data.repository
 
+import com.google.gson.Gson
 import com.pranay.apodnasa.data.local.dao.APODPictureDao
 import com.pranay.apodnasa.data.remote.api.ApiService
-import com.pranay.apodnasa.model.APODListResponse
 import com.pranay.apodnasa.model.APODPictureItem
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import retrofit2.Response
+import com.pranay.apodnasa.model.ErrorResponse
 import javax.inject.Inject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 interface RemotePictureRepository {
     suspend fun loadRemotePictures(
         startDate: String,
         endDate: String
-    ): Response<APODListResponse>
+    ): Pair<Boolean, ErrorResponse?>
 
     suspend fun savePictures(pictures: List<APODPictureItem>)
 }
@@ -34,8 +34,20 @@ class RemotePictureRepositoryImpl @Inject constructor(
     override suspend fun loadRemotePictures(
         startDate: String,
         endDate: String
-    ): Response<APODListResponse> {
-        return apiService.getAPODPictures(startDate, endDate)
+    ): Pair<Boolean, ErrorResponse?> {
+
+        val apiResponse = apiService.getAPODPictures(startDate, endDate)
+        return if (apiResponse.isSuccessful && apiResponse.body() != null) {
+            aPODPictureDao.addPictures(apiResponse.body()?.toList() ?: listOf())
+            Pair(true, null)
+        } else {
+            val errorBody = Gson().fromJson(
+                apiResponse.errorBody()?.string(),
+                ErrorResponse::class.java
+            ) ?: ErrorResponse(message = apiResponse.message())
+
+            Pair(true, errorBody)
+        }
 
     }
 
