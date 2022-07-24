@@ -16,6 +16,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pranay.apodnasa.R
 import com.pranay.apodnasa.databinding.FragmentPictureDetailsBinding
 import com.pranay.apodnasa.model.APODPictureItem
@@ -24,14 +27,14 @@ import com.pranay.apodnasa.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 @AndroidEntryPoint
 class PictureDetailsFragment : Fragment() {
 
-    private var _binding: FragmentPictureDetailsBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentPictureDetailsBinding? = null
     private val picturesViewModel: PicturesViewModel by navGraphViewModels(R.id.nav_graph) {
         defaultViewModelProviderFactory
     }
@@ -39,9 +42,9 @@ class PictureDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPictureDetailsBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        binding = FragmentPictureDetailsBinding.inflate(inflater, container, false)
+        return binding?.root
 
     }
 
@@ -63,8 +66,11 @@ class PictureDetailsFragment : Fragment() {
         }
     }
 
+    /**
+     * SetUp ui for image/video details. as per type show image/video ui and load media
+     */
     private fun setUpUi(apodPictureItem: APODPictureItem) {
-        binding.apply {
+        binding?.apply {
             progressBarView.progressBarView.show()
             textViewPhotoTitle.text = apodPictureItem.title
             val formattedDate = apodPictureItem.date?.toDate()?.formatDate()
@@ -76,37 +82,66 @@ class PictureDetailsFragment : Fragment() {
             } ?: kotlin.run {
                 textViewPhotoCopyright.hide()
             }
-            apodPictureItem.url.let {
-                Glide.with(imageViewPlanet.context).load(it)
-                    .apply(RequestOptions.noTransformation())
-                    .error(R.drawable.ic_launcher_background)
-                    .listener(object : RequestListener<Drawable> {
-                        override fun onLoadFailed(
-                            e: GlideException?,
-                            model: Any?,
-                            target: Target<Drawable>?,
-                            isFirstResource: Boolean
-                        ): Boolean {
-                            progressBarView.progressBarView.hide()
-                            return false
-                        }
+            if (apodPictureItem.isVideo()) { // if user selected video item
+                loadYoutubeVideo(apodPictureItem.url)
+            } else {
+                imageViewPlanet.show()
+                apodPictureItem.url.let {
+                    Glide.with(imageViewPlanet.context).load(it)
+                        .apply(RequestOptions.noTransformation())
+                        .error(R.drawable.ic_launcher_background)
+                        .listener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                progressBarView.progressBarView.hide()
+                                return false
+                            }
 
-                        override fun onResourceReady(
-                            resource: Drawable?,
-                            model: Any?,
-                            target: Target<Drawable>?,
-                            dataSource: DataSource?,
-                            isFirstResource: Boolean
-                        ): Boolean {
-                            progressBarView.progressBarView.hide()
-                            return false
-                        }
-                    })
-                    .into(imageViewPlanet)
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                progressBarView.progressBarView.hide()
+                                return false
+                            }
+                        })
+                        .into(imageViewPlanet)
 
+                }
             }
             textViewPhotoDetails.text = apodPictureItem.explanation
         }
+    }
+
+    /**
+     * Start loading video in the case item is video in video player
+     */
+    private fun loadYoutubeVideo(youtubeUrl: String) {
+        binding?.apply {
+            lifecycle.addObserver(videoPlayer)
+            videoPlayer.show()
+            videoPlayer.initialize(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youtubeUrl.getVideoId()?.let { youTubePlayer.loadVideo(it, 0f) }
+                    progressBarView.progressBarView.hide()
+                }
+
+                override fun onError(
+                    youTubePlayer: YouTubePlayer,
+                    error: PlayerConstants.PlayerError
+                ) {
+                    progressBarView.progressBarView.hide()
+                }
+            })
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -116,6 +151,6 @@ class PictureDetailsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 }

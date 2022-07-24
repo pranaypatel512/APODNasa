@@ -29,7 +29,18 @@
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Card.Media"
                 tools:minHeight="@dimen/dimen_height_large"
                 tools:scaleType="centerCrop"
+                android:visibility="gone"
+                tools:visibility="visible"
                 tools:src="@drawable/ic_launcher_background" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/videoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dimen_loading_view_size_min"
+                android:visibility="gone"
+                app:enableAutomaticInitialization="false"
+                tools:visibility="visible" />
 
             <include
                 android:id="@+id/progressBarView"

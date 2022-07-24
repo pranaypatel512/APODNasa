@@ -19,5 +19,6 @@
     <dimen name="dimen_button_size">@dimen/_50sdp</dimen>
     <dimen name="dimen_font_x_large">@dimen/_16ssp</dimen>
     <dimen name="dimen_loading_view_size_min">@dimen/_200sdp</dimen>
+    <dimen name="dimen_play_image_size">@dimen/_32sdp</dimen>
 
 </resources>
