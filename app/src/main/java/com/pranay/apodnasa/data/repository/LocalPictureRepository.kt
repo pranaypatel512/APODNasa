@@ -3,13 +3,13 @@ package com.pranay.apodnasa.data.repository
 import androidx.annotation.MainThread
 import com.pranay.apodnasa.data.local.dao.APODPictureDao
 import com.pranay.apodnasa.model.APODPictureItem
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
-import javax.inject.Inject
 
 interface LocalPictureRepository {
-    fun getAllPictures(): Flow<Resource<List<APODPictureItem>>>
+    fun getAllMediaItems(): Flow<List<APODPictureItem>>
     fun getPictureByUrl(imageUrl: String): Flow<APODPictureItem>
 }
 
@@ -25,10 +25,7 @@ class LocalPictureRepositoryImpl @Inject constructor(
     /**
      * Fetched the pictures from database.
      */
-    override fun getAllPictures(): Flow<Resource<List<APODPictureItem>>> =
-        object : LocalRepository<List<APODPictureItem>>() {
-            override fun fetchPictureFromLocal(): Flow<List<APODPictureItem>> = aPODPictureDao.getAllPictures()
-        }.asFlow()
+    override fun getAllMediaItems(): Flow<List<APODPictureItem>> = aPODPictureDao.getAllPictures()
 
     /**
      * Retrieves a picture with specified [imageUrl].
