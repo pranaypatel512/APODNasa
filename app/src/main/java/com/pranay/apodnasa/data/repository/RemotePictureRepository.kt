@@ -46,7 +46,7 @@ class RemotePictureRepositoryImpl @Inject constructor(
                 ErrorResponse::class.java
             ) ?: ErrorResponse(message = apiResponse.message())
 
-            Pair(true, errorBody)
+            Pair(false, errorBody)
         }
 
     }
