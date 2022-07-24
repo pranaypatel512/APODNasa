@@ -17,15 +17,17 @@ import androidx.work.*
 import com.pranay.apodnasa.R
 import com.pranay.apodnasa.databinding.FragmentPictureListingBinding
 import com.pranay.apodnasa.model.APODPictureItem
-import com.pranay.apodnasa.model.State
 import com.pranay.apodnasa.ui.PicturesViewModel
 import com.pranay.apodnasa.ui.pictureslist.adapter.NasaPicturesListAdapter
 import com.pranay.apodnasa.util.ItemOffsetDecoration
-import com.pranay.apodnasa.util.Logger
+import com.pranay.apodnasa.util.hide
 import com.pranay.apodnasa.util.show
 import com.pranay.apodnasa.util.showToast
 import com.pranay.apodnasa.worker.RemotePictureWorker
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Duration
+import java.time.LocalTime
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.launch
 
 /**
@@ -71,43 +73,46 @@ class PictureListingFragment : Fragment() {
 
     private fun observePicturesPosts() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                picturesViewModel.pictures.collect { state ->
-                    when (state) {
-                        is State.Loading -> showLoading(true)
-                        is State.Success -> {
-                            showLoading(false)
-                            if (state.data.isNotEmpty()) {
-                                showData(state.data)
-                            } else {
-                                // assuming for the first time start worker to fetch remote images
-                                startWorkerFirstTime()
-                            }
-                        }
-                        is State.Error -> {
-                            showToast(state.message)
-                            showLoading(false)
-                        }
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                picturesViewModel.getAllMediaItems().collect { state ->
+                    if (state.isEmpty()) { // check if there is no items found in database
+                        startWorkerFirstTime() // start one time worker to loading initial media from api and store in database
+                    } else {
+                        showLoading(false) // hide loading
+                        showData(state) // show data in list
                     }
                 }
             }
         }
     }
 
+    /**
+     * from list of data fill ListAdapter and show items
+     */
     private fun showData(data: List<APODPictureItem>) {
-        Logger.log("AAAData--->", data.toString())
         pictureAdapter.submitList(data)
     }
 
+    /**
+     * Starting initial first time onetime worker to load data and observe progress to show error if any or in case of success,
+     * star Periodic Worker to run daily job
+     **/
     private fun startWorkerFirstTime() {
-        Logger.log("AAAWorkManage--->", "Started")
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
         val request = OneTimeWorkRequestBuilder<RemotePictureWorker>()
             .addTag(RemotePictureWorker.TAG)
             .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+            .setConstraints(constraints)
             .build()
         val workId = request.id
         WorkManager.getInstance(requireContext())
-            .enqueueUniqueWork(RemotePictureWorker.TAG, ExistingWorkPolicy.REPLACE, request)
+            .enqueueUniqueWork(
+                RemotePictureWorker.TAG,
+                ExistingWorkPolicy.REPLACE,
+                request
+            ) // every time enqueue unique request only
 
         WorkManager.getInstance(requireContext())
             .getWorkInfoByIdLiveData(workId)
@@ -121,28 +126,73 @@ class PictureListingFragment : Fragment() {
                             if (errorValue != null) // error case
                             {
                                 showToast(errorValue)
-                                binding.tvNoPictures.show()
                             }
+                            binding.tvNoPictures.show()
                         }
                         WorkInfo.State.SUCCEEDED -> {
+                            binding.tvNoPictures.hide()
                             showLoading(false)
-                            picturesViewModel.getPictures()
+                            setUpPeriodicWorkRequest()
                         }
                         WorkInfo.State.RUNNING -> {
+                            binding.tvNoPictures.hide()
                             showLoading(true)
                         }
                         else -> {
                             showLoading(false)
+                            binding.tvNoPictures.show()
                         }
                     }
                 }
             }
     }
 
+    /**
+     * starting Periodic Worker to run job on everyday 6am as per initial delay time
+     */
+    private fun setUpPeriodicWorkRequest() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED) // required network for worker job
+            .build()
+        /*val request = PeriodicWorkRequestBuilder<RemotePictureWorker>(15,TimeUnit.MINUTES)
+            .setInitialDelay(3,TimeUnit.MINUTES)*/
+        val request = PeriodicWorkRequestBuilder<RemotePictureWorker>(1, TimeUnit.DAYS)
+            .setInitialDelay(findInitialDelay(), TimeUnit.HOURS)
+            .addTag(RemotePictureWorker.TAG)
+            .setConstraints(constraints)
+            .build()
+        WorkManager.getInstance(requireContext())
+            .enqueueUniquePeriodicWork(
+                RemotePictureWorker.TAG,
+                ExistingPeriodicWorkPolicy.REPLACE,
+                request
+            ) // every time enqueue unique request
+    }
+
+    /**
+     * Find initial delay as per next day 6AM time with next hours count
+     */
+    private fun findInitialDelay(): Long {
+        val todayDate = LocalTime.now() // current Time
+        val todayDateInc = LocalTime.of(6, 0) // targeted morning 6am time
+        val timeDifference =
+            Duration.between(todayDate, todayDateInc) // find duration between two times
+        // calculate initial delay time as per current hour of day.
+        // if [timeDifference]'s hours is positive simple return initial delay, if [timeDifference]'s hours is negative add 24 hour to get initial positive delay
+        return if (timeDifference.toHours() <= 0) timeDifference.toHours()
+            .plus(24) else timeDifference.toHours()
+    }
+
+    /**
+     * Show hide loading in screen while data fetching
+     */
     private fun showLoading(isLoading: Boolean) {
         binding.groupLoading.isVisible = isLoading
     }
 
+    /**
+     * List item click listener to navigate of media item details screen
+     */
     private fun onItemClicked(aPODPictureItem: APODPictureItem, imageView: ImageView) {
         picturesViewModel.setSelection(aPODPictureItem)
         findNavController().navigate(R.id.action_PictureListingFragment_to_PictureDetailsFragment)
