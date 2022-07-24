@@ -6,10 +6,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.ForegroundInfo
 import androidx.work.WorkerParameters
-import com.google.gson.Gson
 import com.pranay.apodnasa.R
 import com.pranay.apodnasa.data.repository.RemotePictureRepository
-import com.pranay.apodnasa.model.ErrorResponse
 import com.pranay.apodnasa.util.createNotification
 import com.pranay.apodnasa.util.getTwoDates
 import dagger.assisted.Assisted
@@ -36,40 +34,33 @@ class RemotePictureWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result {
         return try {
-            val dates = getTwoDates() // todo: get these dates in worker params
+            val dates = getTwoDates() // can get there two date from work params
             if (dates != null) {
                 val apiResponse =
-                    remotePictureRepository.loadRemotePictures(dates.first, dates.second)
-                if (apiResponse.isSuccessful && apiResponse.body() != null) {
-                    remotePictureRepository.savePictures(apiResponse.body()?.toList() ?: listOf())
+                    remotePictureRepository.loadRemotePictures(
+                        dates.first,
+                        dates.second
+                    )
+                if (apiResponse.first) { // api response success
                     Result.success()
                 } else {
-                    val errorBody = Gson().fromJson(
-                        apiResponse.errorBody()?.string(),
-                        ErrorResponse::class.java
-                    ) ?: ErrorResponse()
-                    var errorValue: String? = null
-                    if (!errorBody.message.isNullOrEmpty()) {
-                        errorValue = errorBody.message
-                    } else if (errorBody.error != null) {
-                        errorBody.error?.let {
-                            errorValue = it.message
-                        }
-                    } else {
-                        errorValue = apiResponse.message()
-                    }
+                    // evaluate error response and send error data in failure result
+                    val errorValue: String? =
+                        apiResponse.second?.message ?: apiResponse.second?.error?.message
                     Result.failure(
-                        Data.Builder()
-                            .put(Error, errorValue)
-                            .build()
+                        errorValue.errorData()
                     )
                 }
 
             } else {
-                Result.failure()
+                Result.failure(
+                    applicationContext.getString(R.string.str_try_again_case).errorData()
+                )
             }
         } catch (e: Exception) {
-            Result.failure()
+            Result.failure(
+                applicationContext.getString(R.string.str_try_again_case).errorData()
+            )
         }
     }
 
@@ -77,5 +68,11 @@ class RemotePictureWorker @AssistedInject constructor(
         const val TAG = "RemotePictureWorker"
         private const val NOTIFICATION_ID = 314
         const val Error = "Error"
+    }
+
+    private fun String?.errorData(): Data {
+        return Data.Builder()
+            .put(Error, this)
+            .build()
     }
 }
