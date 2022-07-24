@@ -14,4 +14,5 @@
     <string name="planet_image">Planet image</string>
     <string name="str_copyright">&#169; %1$s</string>
     <string name="no_astronomy_pictures_found">No Astronomy Pictures found!</string>
+    <string name="str_try_again_case">There is issue while loading Astronomy Pictures. Please try again later.</string>
 </resources>
