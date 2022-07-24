@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_padding_x_small"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@id/textViewPhotoDate"
             app:layout_constraintEnd_toEndOf="@id/textViewPhotoTitle"
             app:layout_constraintStart_toEndOf="@id/textViewPhotoDate"
