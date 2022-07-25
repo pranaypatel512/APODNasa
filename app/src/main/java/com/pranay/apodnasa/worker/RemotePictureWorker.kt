@@ -14,7 +14,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 
 /**
- * this worker will fetch remote picture data from nasa api
+ * this worker will fetch remote picture/videos data from nasa api
  */
 @HiltWorker
 class RemotePictureWorker @AssistedInject constructor(
@@ -23,6 +23,7 @@ class RemotePictureWorker @AssistedInject constructor(
     private val remotePictureRepository: RemotePictureRepository
 ) : CoroutineWorker(appContext, workerParams) {
 
+    //provide ForegroundInfo instance if the WorkRequest is marked as expedited, so while running job user can see the notification.
     override suspend fun getForegroundInfo(): ForegroundInfo {
         return ForegroundInfo(
             NOTIFICATION_ID, createNotification(

@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.pranay.apodnasa.model.APODPictureItem.Companion.TABLE_NAME
 
+/**
+ * API response item and database table for storing media items with details
+ */
 @Entity(tableName = TABLE_NAME)
 data class APODPictureItem(
     @SerializedName("url")

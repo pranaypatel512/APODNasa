@@ -14,7 +14,7 @@ object DatabaseMigrations {
 
     private fun migration12(): Migration = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL("ALTER TABLE ${APODPictureItem.TABLE_NAME} ADD COLUMN thumbnailUrl TEXT")
+            database.execSQL("ALTER TABLE ${APODPictureItem.TABLE_NAME} ADD COLUMN thumbnailUrl TEXT") // add thumbnail url for video item
         }
     }
 }

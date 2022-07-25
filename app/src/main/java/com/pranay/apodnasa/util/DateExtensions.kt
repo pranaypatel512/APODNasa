@@ -3,7 +3,8 @@ package com.pranay.apodnasa.util
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 /**
  * give two date string from given days different to current date
@@ -32,5 +33,5 @@ fun String.toDate(): Date? {
  */
 fun Date?.formatDate(): String? {
     if (this == null) return null
-    return SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(this)
+    return SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(this) ?: null
 }

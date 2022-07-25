@@ -1,6 +1,8 @@
 package com.pranay.apodnasa.model
 
-
+/**
+ * Common api error response class for storing error details
+ */
 import com.google.gson.annotations.SerializedName
 //{"code":400,"msg":"Date must be between Jun 16, 1995 and Jul 22, 2022.","service_version":"v1"}
 data class ErrorResponse(

@@ -8,6 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * local database related hilt dependency config
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 class LocalDatabaseModule {

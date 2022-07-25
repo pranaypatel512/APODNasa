@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * Service to fetch pictures using nasa end point [NASA_API_URL].
+ * Service to fetch pictures/videos using nasa end point [NASA_API_URL].
  */
 interface ApiService {
 
