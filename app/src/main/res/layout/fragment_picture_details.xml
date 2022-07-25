@@ -16,38 +16,45 @@
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageViewPlanet"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/planet_image"
-                app:layout_collapseMode="parallax"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Card.Media"
-                tools:minHeight="@dimen/dimen_height_large"
-                tools:scaleType="centerCrop"
-                android:visibility="gone"
-                tools:visibility="visible"
-                tools:src="@drawable/ic_launcher_background" />
+                app:layout_collapseMode="parallax">
 
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/videoPlayer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/dimen_loading_view_size_min"
-                android:visibility="gone"
-                app:enableAutomaticInitialization="false"
-                tools:visibility="visible" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageViewPlanet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/planet_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Card.Media"
+                    tools:minHeight="@dimen/dimen_height_large"
+                    tools:scaleType="centerCrop"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    tools:src="@drawable/ic_launcher_background" />
 
-            <include
-                android:id="@+id/progressBarView"
-                layout="@layout/layout_show_loader"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/videoPlayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"
+                    app:enableAutomaticInitialization="false"
+                    tools:visibility="visible" />
 
+                <include
+                    android:id="@+id/progressBarView"
+                    layout="@layout/layout_show_loader"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
