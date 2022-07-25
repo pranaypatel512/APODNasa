@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/PictureDetailsFragment"
-        android:name="com.pranay.apodnasa.ui.PictureDetailsFragment"
+        android:name="com.pranay.apodnasa.ui.picturedetails.PictureDetailsFragment"
         tools:layout="@layout/fragment_picture_details">
 
         <action

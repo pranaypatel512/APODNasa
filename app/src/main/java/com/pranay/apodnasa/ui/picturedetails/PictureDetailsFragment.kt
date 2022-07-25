@@ -1,4 +1,4 @@
-package com.pranay.apodnasa.ui
+package com.pranay.apodnasa.ui.picturedetails
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -23,6 +23,7 @@ import com.pranay.apodnasa.R
 import com.pranay.apodnasa.databinding.FragmentPictureDetailsBinding
 import com.pranay.apodnasa.model.APODPictureItem
 import com.pranay.apodnasa.model.State
+import com.pranay.apodnasa.ui.PicturesViewModel
 import com.pranay.apodnasa.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
