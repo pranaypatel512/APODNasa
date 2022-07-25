@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -36,8 +35,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class PictureListingFragment : Fragment() {
 
-    private var _binding: FragmentPictureListingBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentPictureListingBinding? = null
     private val picturesViewModel: PicturesViewModel by navGraphViewModels(R.id.nav_graph) {
         defaultViewModelProviderFactory
     }
@@ -46,9 +44,9 @@ class PictureListingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPictureListingBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        binding = FragmentPictureListingBinding.inflate(inflater, container, false)
+        return binding?.root
 
     }
 
@@ -58,8 +56,11 @@ class PictureListingFragment : Fragment() {
         observePicturesPosts()
     }
 
+    /**
+     * Setup recyclerview with stagger grid layout manager and set item decoration to make same space between item
+     */
     private fun setUpViews() {
-        binding.picturesRecyclerView.apply {
+        binding?.picturesRecyclerView?.apply {
             adapter = pictureAdapter
             addItemDecoration(
                 ItemOffsetDecoration(
@@ -71,6 +72,9 @@ class PictureListingFragment : Fragment() {
         }
     }
 
+    /**
+     * Add item observer to collect items from database to display in list
+     */
     private fun observePicturesPosts() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
@@ -99,11 +103,11 @@ class PictureListingFragment : Fragment() {
      **/
     private fun startWorkerFirstTime() {
         val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiredNetworkType(NetworkType.CONNECTED) // required internet to run a api job
             .build()
         val request = OneTimeWorkRequestBuilder<RemotePictureWorker>()
             .addTag(RemotePictureWorker.TAG)
-            .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+            .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST) // run as quickly as possible using an expedited job
             .setConstraints(constraints)
             .build()
         val workId = request.id
@@ -127,16 +131,20 @@ class PictureListingFragment : Fragment() {
                             {
                                 showToast(errorValue)
                             }
-                            binding.viewNoPictures.show()
+                            binding?.viewNoPictures?.show()
                         }
                         WorkInfo.State.SUCCEEDED -> {
-                            binding.viewNoPictures.hide()
+                            binding?.viewNoPictures?.hide()
                             showLoading(false)
                             setUpPeriodicWorkRequest()
                         }
                         WorkInfo.State.RUNNING -> {
-                            binding.viewNoPictures.hide()
+                            binding?.viewNoPictures?.hide()
                             showLoading(true)
+                        }
+                        WorkInfo.State.ENQUEUED -> { //if initial request is ENQUEUED,due to constraint not satisfied, just show no picture placeholder and stop loading
+                            binding?.viewNoPictures?.show()
+                            showLoading(false)
                         }
                         else -> {
 
@@ -186,19 +194,19 @@ class PictureListingFragment : Fragment() {
      * Show hide loading in screen while data fetching
      */
     private fun showLoading(isLoading: Boolean) {
-        binding.groupLoading.isVisible = isLoading
+        binding?.groupLoading?.isVisible = isLoading
     }
 
     /**
      * List item click listener to navigate of media item details screen
      */
-    private fun onItemClicked(aPODPictureItem: APODPictureItem, imageView: ImageView) {
+    private fun onItemClicked(aPODPictureItem: APODPictureItem) {
         picturesViewModel.setSelection(aPODPictureItem)
         findNavController().navigate(R.id.action_PictureListingFragment_to_PictureDetailsFragment)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 }
