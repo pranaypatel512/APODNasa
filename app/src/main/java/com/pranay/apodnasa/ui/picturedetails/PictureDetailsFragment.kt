@@ -51,7 +51,7 @@ class PictureDetailsFragment : Fragment() {
 
     private fun observePicturesPosts() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 picturesViewModel.selectedItem.collect { state ->
                     when (state) {
                         is State.Loading -> {}
