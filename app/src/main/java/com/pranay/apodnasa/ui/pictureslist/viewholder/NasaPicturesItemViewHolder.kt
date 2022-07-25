@@ -41,8 +41,8 @@ class NasaPicturesItemViewHolder(private val binding: ListItemNasaPhotoBinding) 
             urlToLoad?.let {
                 Glide.with(imageViewPlanet.context).load(it)
                     .apply(RequestOptions.noTransformation())
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_baseline_image_24)
+                    .error(R.drawable.ic_baseline_image_24)
                     .into(imageViewPlanet)
             }
 

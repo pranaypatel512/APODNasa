@@ -7,4 +7,5 @@
     <color name="statusBarColor">@android:color/white</color>
 
     <color name="textColor">@android:color/black</color>
+    <color name="imageBackgroundTint">#C3C3C3</color>
 </resources>

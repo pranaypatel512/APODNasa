@@ -5,5 +5,6 @@
     <color name="statusBarColor">#002022</color>
 
     <color name="textColor">@android:color/white</color>
+    <color name="imageBackgroundTint">#006064</color>
 
 </resources>
