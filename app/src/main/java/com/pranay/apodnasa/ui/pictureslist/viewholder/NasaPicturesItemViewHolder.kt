@@ -1,6 +1,5 @@
 package com.pranay.apodnasa.ui.pictureslist.viewholder
 
-import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -23,7 +22,7 @@ class NasaPicturesItemViewHolder(private val binding: ListItemNasaPhotoBinding) 
 
     fun bind(
         apodPictureItem: APODPictureItem,
-        onItemClicked: (APODPictureItem, ImageView) -> Unit
+        onItemClicked: (APODPictureItem) -> Unit
     ) {
         binding.apply {
             textViewPhotoTitle.text = apodPictureItem.title
@@ -48,7 +47,7 @@ class NasaPicturesItemViewHolder(private val binding: ListItemNasaPhotoBinding) 
             }
 
             root.setOnClickListener {
-                onItemClicked(apodPictureItem, binding.imageViewPlanet)
+                onItemClicked(apodPictureItem)
             }
         }
     }

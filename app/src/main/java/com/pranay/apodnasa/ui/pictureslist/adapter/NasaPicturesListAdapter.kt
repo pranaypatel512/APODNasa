@@ -2,7 +2,6 @@ package com.pranay.apodnasa.ui.pictureslist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,7 @@ import com.pranay.apodnasa.ui.pictureslist.viewholder.NasaPicturesItemViewHolder
  * @param onItemClicked which will receive callback when item is clicked.
  */
 class NasaPicturesListAdapter(
-    private val onItemClicked: (APODPictureItem, ImageView) -> Unit
+    private val onItemClicked: (APODPictureItem) -> Unit
 ) : ListAdapter<APODPictureItem, NasaPicturesItemViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NasaPicturesItemViewHolder(

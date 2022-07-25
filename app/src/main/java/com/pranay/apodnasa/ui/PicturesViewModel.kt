@@ -9,6 +9,9 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+/**
+ * Common view model to show list of items in list screen and showing item details in details screen
+ */
 @HiltViewModel
 class PicturesViewModel @Inject constructor(private val localPictureRepository: LocalPictureRepository) :
     ViewModel() {
@@ -21,7 +24,7 @@ class PicturesViewModel @Inject constructor(private val localPictureRepository: 
     fun getAllMediaItems() = localPictureRepository.getAllMediaItems()
 
     /**
-     * Call once user click on any picture. setup item to show in details screen
+     * Call once user click on any picture/video item. setup item to show in details screen
      */
     fun setSelection(selectedPicture: APODPictureItem) {
         _selectedItem.value = State.Success(selectedPicture)
