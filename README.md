@@ -81,6 +81,29 @@ View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app
 - [sdp](https://github.com/intuit/sdp) and [ssp](https://github.com/intuit/ssp) : Provide common
   dimens sizes to support different screen wise size
 
+## 📷 Screenshots
+
+<table style="width:100%">
+  <tr>
+    <th colspan="4">Dark theme</th>
+  </tr>
+  <tr>
+    <td><img src = "images/APODNasa_dark_first.png" width=240/></td> 
+    <td><img src = "images/APODNasa_dark_second.png" width=240/></td>
+    <td><img src = "images/APODNasa_dark_third.png" width=240/></td> 
+    <td><img src = "images/APODNasa_dark_four.png" width=240/></td> 
+  </tr>
+  <tr>
+    <th colspan="4">Light theme</th>
+  </tr>
+  <tr>
+    <td><img src = "images/APODNasa_light_first.png" width=240/></td> 
+    <td><img src = "images/APODNasa_light_second.png" width=240/></td>
+    <td><img src = "images/APODNasa_light_third.png" width=240/></td> 
+        <td><img src = "images/APODNasa_light_four.png" width=240/></td> 
+  </tr>
+</table>
+
 ### Other points
 
 - Using [`navGraphViewModels`](https://developer.android.com/guide/navigation/navigation-programmatic#share_ui-related_data_between_destinations_with_viewmodel)
