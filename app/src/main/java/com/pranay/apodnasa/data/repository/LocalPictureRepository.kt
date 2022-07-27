@@ -4,7 +4,6 @@ import androidx.annotation.MainThread
 import com.pranay.apodnasa.data.local.dao.APODPictureDao
 import com.pranay.apodnasa.model.APODPictureItem
 import javax.inject.Inject
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -17,7 +16,6 @@ interface LocalPictureRepository {
  * Singleton repository for fetching data from database
  * for offline capability. This is Single source of data.
  */
-@ExperimentalCoroutinesApi
 class LocalPictureRepositoryImpl @Inject constructor(
     private val aPODPictureDao: APODPictureDao
 ) : LocalPictureRepository {

@@ -6,7 +6,6 @@ import com.pranay.apodnasa.data.remote.api.ApiService
 import com.pranay.apodnasa.model.APODPictureItem
 import com.pranay.apodnasa.model.ErrorResponse
 import javax.inject.Inject
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 interface RemotePictureRepository {
     suspend fun loadRemotePictures(
@@ -21,7 +20,6 @@ interface RemotePictureRepository {
  * Singleton repository for fetching data from remote and storing it in database
  * for offline capability.
  */
-@ExperimentalCoroutinesApi
 class RemotePictureRepositoryImpl @Inject constructor(
     private val aPODPictureDao: APODPictureDao,
     private val apiService: ApiService
