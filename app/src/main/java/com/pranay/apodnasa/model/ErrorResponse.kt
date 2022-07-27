@@ -19,4 +19,8 @@ data class ErrorResponse(
         @SerializedName("message")
         var message: String? = null
     )
+
+    fun errorMessage(): String? {
+        return error?.message ?: message
+    }
 }

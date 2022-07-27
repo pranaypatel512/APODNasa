@@ -47,7 +47,7 @@ class RemotePictureWorker @AssistedInject constructor(
                 } else {
                     // evaluate error response and send error data in failure result
                     val errorValue: String? =
-                        apiResponse.second?.message ?: apiResponse.second?.error?.message
+                        apiResponse.second?.errorMessage()
                     Result.failure(
                         errorValue.errorData()
                     )
