@@ -52,7 +52,10 @@ class RemotePictureRepositoryImpl @Inject constructor(
     }
 
     override suspend fun savePictures(pictures: List<APODPictureItem>) {
-        aPODPictureDao.addPictures(pictures)
+        aPODPictureDao.apply {
+            deleteAllPictures()
+            addPictures(pictures)
+        }
     }
 
 }
