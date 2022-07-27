@@ -6,7 +6,7 @@ App related to show [Astronomy Picture of the Day(APOD)](http://apod.nasa.gov/ap
 for last seven days. An app to show media listing using [APOD](https://api.nasa.gov/) api having
 image/gif/video.
 
-* Always loading Media from local database (room. Remote data (from API) and Local data is always
+* Always loading Media from local database (room). Remote data (from API) and Local data is always
   synchronized.
 * App can load media offline.
 * Clean and Simple Material UI.
