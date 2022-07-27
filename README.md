@@ -37,6 +37,29 @@ image/gif/video.
   * `worker`: Created work manger worker to get scheduled api call to get APOD data and store in
     database
 
+## 📷 Screenshots
+
+<table style="width:100%">
+  <tr>
+    <th colspan="4">Dark theme</th>
+  </tr>
+  <tr>
+    <td><img src = "images/APODNasa_dark_first.png" width=240/></td> 
+    <td><img src = "images/APODNasa_dark_second.png" width=240/></td>
+    <td><img src = "images/APODNasa_dark_third.png" width=240/></td> 
+    <td><img src = "images/APODNasa_dark_four.png" width=240/></td> 
+  </tr>
+  <tr>
+    <th colspan="4">Light theme</th>
+  </tr>
+  <tr>
+    <td><img src = "images/APODNasa_light_first.png" width=240/></td> 
+    <td><img src = "images/APODNasa_light_second.png" width=240/></td>
+    <td><img src = "images/APODNasa_light_third.png" width=240/></td> 
+        <td><img src = "images/APODNasa_light_four.png" width=240/></td> 
+  </tr>
+</table>
+
 ### Architecture
 
 This app uses [***MVVM (Model View
@@ -81,29 +104,6 @@ View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app
 - [sdp](https://github.com/intuit/sdp) and [ssp](https://github.com/intuit/ssp) : Provide common
   dimens sizes to support different screen wise size
 
-## 📷 Screenshots
-
-<table style="width:100%">
-  <tr>
-    <th colspan="4">Dark theme</th>
-  </tr>
-  <tr>
-    <td><img src = "images/APODNasa_dark_first.png" width=240/></td> 
-    <td><img src = "images/APODNasa_dark_second.png" width=240/></td>
-    <td><img src = "images/APODNasa_dark_third.png" width=240/></td> 
-    <td><img src = "images/APODNasa_dark_four.png" width=240/></td> 
-  </tr>
-  <tr>
-    <th colspan="4">Light theme</th>
-  </tr>
-  <tr>
-    <td><img src = "images/APODNasa_light_first.png" width=240/></td> 
-    <td><img src = "images/APODNasa_light_second.png" width=240/></td>
-    <td><img src = "images/APODNasa_light_third.png" width=240/></td> 
-        <td><img src = "images/APODNasa_light_four.png" width=240/></td> 
-  </tr>
-</table>
-
 ### Other points
 
 - Using [`navGraphViewModels`](https://developer.android.com/guide/navigation/navigation-programmatic#share_ui-related_data_between_destinations_with_viewmodel)
@@ -111,6 +111,9 @@ extension for ViewModel that provide maintain data across given navigation graph
 selling produce and show selling produce info on next page.
 - Using [Navigation Animation](https://developer.android.com/guide/navigation/navigation-animate-transitions)
 for screen navigation
+
+### App color theming 
+- Clone color theming from [Foodium](https://github.com/PatilShreyas/Foodium) app
 
 ### :envelope: Get in touch!
 
