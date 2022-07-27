@@ -83,8 +83,22 @@ View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app
 
 ### Other points
 
-* Using [`navGraphViewModels`](https://developer.android.com/guide/navigation/navigation-programmatic#share_ui-related_data_between_destinations_with_viewmodel)
+*
+Using [`navGraphViewModels`](https://developer.android.com/guide/navigation/navigation-programmatic#share_ui-related_data_between_destinations_with_viewmodel)
 extension for ViewModel that provide maintain data across given navigation graph to completed
 selling produce and show selling produce info on next page.
-* Using [Navigation Animation](https://developer.android.com/guide/navigation/navigation-animate-transitions)
+*
+Using [Navigation Animation](https://developer.android.com/guide/navigation/navigation-animate-transitions)
 for screen navigation
+
+### :envelope: Get in touch!
+
+* [@Twitter](https://twitter.com/pranatpatel_)
+
+### Find this project useful ? ❤️
+
+Support it by clicking the ⭐️ button on the upper right of this page. ✌️
+
+### License
+
+See [License](https://github.com/pranaypatel512/APODNasa/blob/master/LICENSE)
