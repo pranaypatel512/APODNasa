@@ -8,7 +8,7 @@ image/gif/video.
 
 * Always loading Media from local database (room). Remote data (from API) and Local data is always
   synchronized.
-* App can load media offline.
+* App can load media listing, details offline.
 * Clean and Simple Material UI.
 * Supporting dart-light theme.
 
