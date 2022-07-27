@@ -11,6 +11,7 @@ image/gif/video.
 * App can load media listing, details offline.
 * Clean and Simple Material UI.
 * Supporting dart-light theme.
+* Daily pictures sync up in the morning
 
 ### Run a project
 
@@ -44,6 +45,12 @@ image/gif/video.
     <th colspan="4">Dark theme</th>
   </tr>
   <tr>
+    <th>Media listing</th>
+    <th>Media listing with video item</th>
+    <th>Media item details</th>
+    <th>Video media item details</th>
+  </tr>
+  <tr>
     <td><img src = "images/APODNasa_dark_first.png" width=240/></td> 
     <td><img src = "images/APODNasa_dark_second.png" width=240/></td>
     <td><img src = "images/APODNasa_dark_third.png" width=240/></td> 
@@ -56,7 +63,7 @@ image/gif/video.
     <td><img src = "images/APODNasa_light_first.png" width=240/></td> 
     <td><img src = "images/APODNasa_light_second.png" width=240/></td>
     <td><img src = "images/APODNasa_light_third.png" width=240/></td> 
-        <td><img src = "images/APODNasa_light_four.png" width=240/></td> 
+    <td><img src = "images/APODNasa_light_four.png" width=240/></td> 
   </tr>
 </table>
 
