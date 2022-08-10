@@ -122,6 +122,11 @@ for screen navigation
 ### App color theming 
 - Using color theming from [Foodium](https://github.com/PatilShreyas/Foodium) app
 
+### Contribute
+
+If you want to contribute to this library, you're always welcome!
+See [Contributing Guidelines](CONTRIBUTING.md).
+
 ### :envelope: Get in touch!
 
 * [@Twitter](https://twitter.com/pranatpatel_)
