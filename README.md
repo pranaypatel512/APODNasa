@@ -124,17 +124,17 @@ for screen navigation
 
 ### Contribute
 
-If you want to contribute to this library, you're always welcome!
+- If you want to contribute to this library, you're always welcome!
 See [Contributing Guidelines](CONTRIBUTING.md).
 
 ### :envelope: Get in touch!
 
-* [@Twitter](https://twitter.com/pranatpatel_)
+- [@Twitter](https://twitter.com/pranatpatel_)
 
 ### Find this project useful ? ❤️
 
-Support it by clicking the ⭐️ button on the upper right of this page. ✌️
+- Support it by clicking the ⭐️ button on the upper right of this page. ✌️
 
 ### License
 
-See [License](https://github.com/pranaypatel512/APODNasa/blob/master/LICENSE)
+- See [License](https://github.com/pranaypatel512/APODNasa/blob/master/LICENSE)
