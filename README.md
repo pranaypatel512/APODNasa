@@ -120,7 +120,7 @@ selling produce and show selling produce info on next page.
 for screen navigation
 
 ### App color theming 
-- Clone color theming from [Foodium](https://github.com/PatilShreyas/Foodium) app
+- Using color theming from [Foodium](https://github.com/PatilShreyas/Foodium) app
 
 ### :envelope: Get in touch!
 
