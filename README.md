@@ -129,7 +129,10 @@ See [Contributing Guidelines](CONTRIBUTING.md).
 
 ### :envelope: Get in touch!
 
-- [@Twitter](https://twitter.com/pranatpatel_)
+[![Medium](https://img.shields.io/badge/-medium-gray?style=for-the-badge&logo=medium)](https://medium.com/@pranaypatel)
+[![Twitter](https://img.shields.io/badge/-twitter-gray?style=for-the-badge&logo=twitter)](https://twitter.com/pranatpatel_)
+[![LinkedIn](https://img.shields.io/badge/-linkedin-gray?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/pranaypatel512/)
+
 
 ### Find this project useful ? ❤️
 
